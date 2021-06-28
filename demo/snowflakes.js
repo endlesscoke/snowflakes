@@ -6,29 +6,37 @@ const particles = {
     rectColor: '255, 255, 255',
     ctx: undefined,
     bits: [],
+
+
     init: function() {
-        var canvas = document.getElementById('canvas');
+        let canvas = document.getElementById('canvas');
         this.ctx = canvas.getContext('2d'); 
     },
+
     getBitsAmount: function(){
         return canvas.width / this.width;
     },
+
     resize: function() {
         if(canvas.width !== window.innerWidth) {
             canvas.width = window.innerWidth;
+
             this.bits = [];
             this.create();
         } else if (canvas.height !== window.innerHeight) {
             canvas.height = window.innerHeight;
+
             this.bits = [];
             this.create();
         }
     },
+
     start: function() {
         this.init();
         this.create();
         this.run();
     },
+
     create: function() {
         for (let i = 0; i < this.getBitsAmount(); i++) {
             this.bits.push({
@@ -49,6 +57,7 @@ const particles = {
             });
         }
     },
+
     update: function() {
         this.resize();
 
@@ -66,6 +75,7 @@ const particles = {
             }
         });
     },
+
     render: function() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -77,6 +87,7 @@ const particles = {
         });
         this.ctx.stroke();
     },
+
     run: function() {
         this.update();
         this.render();
